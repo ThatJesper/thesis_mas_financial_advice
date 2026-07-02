@@ -1,0 +1,125 @@
+inkomsten_taak:
+  description: >
+    Analyseer de inkomens-, toeslagen- en budgettaire situatie van de klant op basis van het dossier: {user_input}. 
+    Breng de fiscale positie van het huishouden in kaart en toets de toeslagrechten aan de hand van de geldende wetgeving.
+    
+    Hanteer bij het verzamelen en verwerken van de data de volgende scheiding:
+    
+    1. **DIRECT KOPIËREN (Niet zelf berekenen):**
+       - Neem de alle relevante bedragen voor bijvoorbeeld 'Fiscaal Jaarinkomen Box 1', 'Toetsingsinkomen' en 'Berekend Netto Maandinkomen' (voor zowel gebruiker als partner) letterlijk over uit Sectie [0] en [1] van het dossier.
+       - Neem de 'Totale NETTO Uitgaven (Vast + Flex)' uit Sectie [0] van het dossier letterlijk over als 'Totale Netto Uitgaven (Huishouden)' in de Nibud-toets.
+       - Neem de 'Spaarbuffer' uit Sectie [3] letterlijk over als 'Actuele Spaarbuffer'.
+    
+    2. **COGNITIEVE ADVIESRUIMTE:**
+       - Evalueer de Box 1-tariefschijf en de marginale druk. Indien er geen bruto maandloon in het dossier staat (bijv. bij een ZZP'er of DGA in Sectie [2]), bereken dan het bruto maandequivalent.
+       - Toets de toeslagrechten (Zorg-, Huur-, Kindertoeslagen) door het Toetsingsinkomen en Box 3-vermogen te matchen met de staffels. Noteer bij Huurtoeslag uitsluitend de status van het recht op basis van de vermogensgrens.
+       - Synthetiseer het 'STANDAARD BESTEEDBAAR INKOMEN' en benchmark de actuele spaarbuffer tegen de Nibud-doelbuffer (6x de totale netto uitgaven) om budgettaire risico's of zorgkostenrisico's (WLZ) bloot te leggen.
+
+    **VERPLICHTE FORMATTERING:** Giet al jouw bevindingen en berekeningen EXACT in het volgende sjabloon:
+    {inkomen_template}
+  expected_output: >
+    Je MOET je antwoord altijd beginnen met een verborgen denkproces. Schrijf hierin je logische toetsing en staffel-matches uit:
+    <denkproces>
+    1. [Inkomens en partnerstatus gecontroleerd en overgenomen]
+    2. [Wettelijke Box 1 schijf en heffingskortingen bepaald]
+    3. [Toeslagen gematcht aan de hand van de staffeltabellen]
+    4. [Nibud doelbuffer vermenigvuldigd en status bepaald]
+    </denkproces>
+    
+    Dan volgt het deelrapport in Markdown dat exact de template volgt. Voeg geen extra chat-tekst toe.
+
+ondernemers_taak:
+  description: >
+    Analyseer de zakelijke en persoonlijke financiële positie van de klant op basis van het dossier: {user_input}. 
+    Beoordeel de fiscale gezondheid en de synergie tussen de onderneming en privé.
+    
+    Richt je analyse op de volgende strategische gebieden:
+    - **Zakelijke relevantie**: Controleer direct of er sprake is van zakelijke inkomsten (ZZP of B.V.) of voertuigen in het dossier. Is dit er niet? Activeer dan direct Scenario B.
+    - **Fiscale & Mobiliteits-Audit**: Doorgrond de fiscale druk (ondernemersaftrek, MKB-winstvrijstelling, VpB-schijven of Box 2-druk) en weeg mobiliteitsopties (bijtelling, leasevormen, youngtimers) kritisch af. Beoordeel of investeringen drempels zoals de KIA passeren.
+    - **Strategische optimalisatie**: Formuleer creatieve, domein-overstijgende adviezen (zoals de afweging van een Agio-storting of het herstructureren van leasecontracten) om overtollige reserves optimaal te benutten.
+
+    **VERPLICHTE FORMATTERING:** Is de expertise relevant? Giet dan al jouw bevindingen en berekeningen EXACT in het volgende sjabloon:
+    {ondernemen_template}
+  expected_output: >
+    Je MOET je antwoord altijd beginnen met een verborgen denkproces waarin je de fiscale staffels handmatig controleert:
+    <denkproces>
+    1. [Check aanwezigheid ZZP/DGA inkomsten of voertuigen]
+    2. [Besluit: Scenario A of Scenario B]
+    3. [Indien A: Bepaal ondernemersaftrek, Vpb-schijf, Box 2-tarief en bijtelling]
+    </denkproces>
+    
+    Kies op basis van je denkproces exact één van de volgende twee scenario's:
+    
+    [SCENARIO A - RELEVANT]:
+    Een technisch deelrapport (in Markdown) dat 1-op-1 de structuur, koppen og tabellen van de template volgt. Vervang alle placeholders met jouw berekende 2026-data. Voeg GEEN extra chat-teksten toe buiten de template.
+    
+    [SCENARIO B - NIET RELEVANT]:
+    "De klant heeft geen zakelijke inkomensstromen of leaseverplichtingen, dit deelrapport is daarom overgeslagen."
+
+wonen_taak:
+  description: >
+    Analyseer de woon- en vastgoedsituatie van de klant op basis van het dossier: {user_input}. 
+    Breng de huidige woonsituatie in kaart en beoordeel de haalbaarheid van eventuele toekomstige woonwensen.
+    
+    Geef je kritische blik op de volgende aspecten:
+    - **Fiscale waardering**: Extraheer de lasten en objectgegevens om de fiscale impact (Eigenwoningforfait, hypotheekrenteaftrek of Hillen-aftrek) nauwkeurig te duiden.
+    - **Koopwens & Leencapaciteit**: Analyseer hoe de actieve koopwens zich verhoudt tot de realiteit. Beoordeel autonoom hoe consumptieve schulden, DUO-schulden (SF15 vs. SF35) of leasecontracten de leencapaciteit beperken en hoe de klant strategisch zijn leenruimte kan maximaliseren (inclusief label-bonussen of opslagen).
+    - **Strategisch advies**: Denk out-of-the-box mee over slimme verhuisregelingen, bijleenregelingen of rente-arbitrage om de woonwens te realiseren.
+
+    **VERPLICHTE FORMATTERING:** Giet al jouw bevindingen EXACT in het volgende sjabloon:
+    {wonen_template}
+  expected_output: >
+    Je MOET je antwoord altijd beginnen met een verborgen denkproces:
+    <denkproces>
+    1. [Bepaal woonsituatie: Huurder, Koper of Inwonend]
+    2. [EWF berekening of debt-impact matrix handmatig gecontroleerd]
+    3. [Koopwens haalbaarheid en overdrachtsbelachtingtarief getoetst]
+    </denkproces>
+    
+    Dan volgt het technische deelrapport in Markdown dat 1-op-1 de structuur van de template volgt. 
+    LET OP: Toon uitsluitend de specifieke sub-sectie in paragraaf 1 die past bij de woonsituatie van de klant. Verwijder de niet-toepasselijke sub-secties volledig uit je output. Voeg geen extra chat-tekst toe buiten de template.
+
+vermogens_taak:
+  description: >
+    Analyseer de vermogenspositie, pensioensituatie en openstaande schulden van de klant op basis van het dossier: {user_input}.
+    Ontwerp een blauwdruk voor structurele vermogensgroei en vermogensbescherming.
+    
+    Hanteer bij het invullen van de template de volgende richtlijnen:
+    
+    1. **DIRECT KOPIËREN (Niet zelf berekenen):**
+       - Neem de bedragen voor 'Spaarbuffer', 'Beleggingen' en 'Overig vermogen' letterlijk over uit Sectie [3] van het dossier.
+       - Neem het 'Totaal Box 3 Vermogen' en de 'Totale Niet-Hypothecaire Schuld' letterlijk over uit Sectie [0].
+    
+    2. **COGNITIEVE ADVIESRUIMTE:**
+       - Beoordeel de Box 3-belastingdruk over de grondslag boven het heffingvrij vermogen en pas de schuldendrempels correct toe volgens de 2026-forfaits.
+       - Analyseer de pensioensituatie (Box 1 aftrekruimte/jaarruimte) om pensioengaten te signaleren en doorgrond estate planning-kansen (schenkingsvrijstellingen) op basis van de gezinssituatie om het vermogen fiscaal vriendelijk te beschermen.
+
+    **VERPLICHTE FORMATTERING:** Giet al jouw bevindingen en berekeningen EXACT in het volgende sjabloon:
+    {vermogen_template}
+  expected_output: >
+    Je MOET je antwoord altijd beginnen met een verborgen denkproces waarin je de forfaitaire berekeningen stap-voor-stap uitschrijft:
+    <denkproces>
+    1. [Box 3-componenten uit dossier overgenomen]
+    2. [Fictief rendement per categorie vermenigvuldigd]
+    3. [Heffingvrij vermogen toegepast en 36% belasting berekend]
+    4. [Jaarruimte en schenkingsvrijstellingen getoetst]
+    </denkproces>
+    
+    Depois volgt het technische deelrapport in Markdown dat 1-op-1 de structuur van de template volgt. Voeg geen extra chat-tekst toe.
+
+report_generation_task:
+  description: >
+    Stel het definitieve, integrale financiële meesterplan voor 2026 op voor de klant. Je ontvangt het ruwe klantdossier ({user_input}) en de strategische deelanalyses van je specialisten.
+    
+    Jij bent de regisseur en hoofdadviseur. Neem volledige cognitieve vrijheid om de losse eindjes aan elkaar te knopen:
+    - **Synthese & Synergie**: Los cross-domein conflicten autonoom op (zoals de drang om te beleggen versus een zwaar Nibud-buffertekort) en leg slimme dwarsverbanden tussen de deelspecialismen.
+    - **Financiële Foto & Confrontatie**: Breng de harde realiteit in kaart. Confronteer het subjectieve gevoel van grip van de klant met de feitelijke vrije cashflow en leg de financiële lekken genadeloos bloot.
+    - **Het Meesterstuk**: Ontwerp creatieve, domein-overstijgende langetermijnstrategieën op basis van het arbitrage-principe en de vermogenshiërarchie. Sluit af met een eerlijke, ongezouten conclusie over de haalbaarheid van het hoofddoel en dicteer de absolute nummer 1 actiestap voor morgen.
+
+    **VERPLICHTE FORMATTERING:** Giet het eindrapport EXACT in de volgende template:
+    {report_template}
+  expected_output: >
+    Het definitieve financiële plan (in Markdown) dat exact de structuur van de template volgt. Zonder dubbele nagenoeg identieke tips.
+    Vervang alle placeholders. Verwijder alle stuurteksten die beginnen met "[AGENT: ...]".
+    
+    HARDE REDACTIONELE REGEL: Er mogen absoluut GEEN bestandsnamen (zoals .md of KC-regels), namen van AI-agents, of verwijzingen naar "mijn specialisten/collega's" in de lopende tekst staan. Jij bent de enige adviseur die rechtstreeks tot de klant spreekt.
